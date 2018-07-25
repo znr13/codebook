@@ -1,0 +1,17 @@
+#Word Frequency
+findFreqTerms(dtm, 100)
+
+#Find frequent words. The number is the number of times they occur in the corpus. 
+findFreqTerms(dtm, 100)
+
+#Get a list of most frequent terms. 
+freq <- colSums(as.matrix(dtm))
+
+#Length should be total number of terms.
+length(freq)
+
+#Create a sorted ordering (descending).
+ord_freq <- order(freq,decreasing=TRUE)
+
+#Inspect most frequently occurring terms.
+freq[ord_freq[1:50]]
