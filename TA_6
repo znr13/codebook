@@ -1,0 +1,14 @@
+#Sort frequency matrix.
+v <- sort(freq, decreasing=TRUE)
+
+#Create dataframe with columns for words and their frequencies.
+d <- data.frame(word = names(v),frequency=v)
+
+#Assign (numerical)ranks to each word.
+zipf <- cbind(d, Rank=1:nrow(d))
+
+#Viz for Zipf's law. 
+plot(zipf$Rank, zipf$freq, xlab="Rank", ylab="Frequency",log="x")
+
+#Find hapaxes - words that only occur once.
+length(freq[which(freq==1)]) 
