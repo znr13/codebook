@@ -1,0 +1,8 @@
+#Making a Word Cloud
+termMatrix <- as.matrix(t(dtm))
+wordFreq <- sort(rowSums(termMatrix), decreasing = TRUE)
+set.seed(375)
+grayLevels <- gray((wordFreq+10)/(max(wordFreq)+10))
+wordcloud(words = names(wordFreq), freq = wordFreq, min.freq = 3, random.order = F, colors = graylevels)
+dev.off()
+#Resets the graphics area.
