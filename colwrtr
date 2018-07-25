@@ -1,0 +1,10 @@
+library(data.table)
+Sys.setlocale("LC_CTYPE", locale = "locale_language")
+alpha <- fread("file.csv", header = FALSE)
+#the file must contain more than one column.
+#generates unreadable text until after the rows are split and written into files.
+bodyline_text <- alpha[,3]
+splitter <- rep(1:50, NROW(bodyline_text)/50)[1:NROW(bodyline_text)]
+#Adjust for total number of rows.
+second_splitter <- split(bodyline_text, splitter)
+mapply(function(x,y) write.csv(x,y), second_splitter,  paste0(1:length(second_splitter), ".txt"))
