@@ -1,0 +1,12 @@
+#Creating a Document Term Matrix
+dtm <- DocumentTermMatrix(tempb)
+dtm[["dimnames"]][["Terms"]]
+dtm <- removeSparseTerms(dtm, .80)
+#As sparsity approaches 1.0 less used tokens will be captured.
+#A sparsity of .80 captures tokens that appear in at least 80% of all documents.
+list_of_sparse_terms <- dtm[["dimnames"]][["Terms"]]
+#This object will be used in later scripts.
+
+#Creating a Term Document Matrix
+tdm <- TermDocumentMatrix(tempb)
+inspect(tdm)
