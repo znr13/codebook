@@ -1,0 +1,14 @@
+#Cluster Analysis - Proximal Relation of Documents.
+#Using your object, dtm.
+data <- as.data.frame(inspect(dtm))
+data.scale <- scale(data)
+d <- dist(data.scale, method = "euclidean")
+fit <- hclust(d, method = "ward")
+plot(fit)
+
+#Cluster Analysis - Relation of Tokens
+data2 <- as.data.frame(inspect(tdm))
+data.scale2 <- scale(data2)
+d2 <- dist(data.scale2, method = "euclidean")
+fit2 <- hclust(d2, method = "ward")
+plot(fit2)
