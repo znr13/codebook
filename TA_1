@@ -1,0 +1,40 @@
+#Step 1 - Load texts into R
+
+testa <- Corpus(DirSource("#folder path containing .txt files", encoding = "UTF-8"))
+#Encoding may not be necessary
+inspect(testa)
+
+#Print out a Document
+testa$content[[1]]
+
+#Step 2 - Cleaning Texts
+
+#Remove Punctuation
+testa <- tm_map(testa,removePunctuation)
+
+#Remove Numbers
+testa <- tm_map(testa, removeNumbers)
+
+#Remove White Space
+testa <- tm_map(testa, stripWhitespace)
+
+#Remove a list of words
+mystoplist <- stopwords(stopwords = NULL, useStopDic = TRUE)
+testa <- tm_map(testa, removeWords, mystoplist)
+
+#Step 3 - Segmenting Words
+
+testb <- lapply(testa,function(x) unlist(segment(x)))
+#Tokenize the words in the corpus.
+tempb <- Corpus(VectorSource(testb))
+
+#step 4 - Review
+
+inspect(tempb)
+#This will return a readout of every token.
+inspect(testb)
+#This will return an error, because you cannot 'inspect' a 'list'.
+testb[[1]]
+#This gives each token within a document.
+tempb[[1]]
+#This gives a description of a particlar document.
